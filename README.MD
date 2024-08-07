@@ -35,21 +35,33 @@ make generate-cert
 To encrypt data using Golang:
 ```
 make go-encrypt
+go run ./go/encrypt/main.go
+Enter the message to encrypt: test encrypt
+chipperText (base64): KzVkgN+FtWJYwZJaS6tj99yz3Yzef8B3/w9kOeyasQb/ZH9x/cDm5N4HZSTpk2AdZ5TTttuoyVR5fFfcrzgoSlEDolq++3L1LYv4s2Zd+ryp3TsZ59bjNXph2jSgPnHQeticCEaBoK0gcKOAjzJc1ffloJUYt85ZIvhD0WgaXg8=
 
 ```
 To decrypt data using Golang:
 ```
 make go-decrypt
+go run ./go/decrypt/main.go
+Enter the chipperText (base64): KzVkgN+FtWJYwZJaS6tj99yz3Yzef8B3/w9kOeyasQb/ZH9x/cDm5N4HZSTpk2AdZ5TTttuoyVR5fFfcrzgoSlEDolq++3L1LYv4s2Zd+ryp3TsZ59bjNXph2jSgPnHQeticCEaBoK0gcKOAjzJc1ffloJUYt85ZIvhD0WgaXg8=
+Decrypted message: test encrypt
 ```
 6. Run Python Encryption and Decryption
 
 To encrypt data using Python:
 ```
 make python-encrypt
+python3 ./python/encrypt/main.py
+Enter the plaintext message: test python
+Encrypted (Base64): aYZRG0BAZxWI2oWXHr7bw5bK650w+6HI+hVBtpNbjF+1Zje8mG/dQSaylBVAxtZs/vx7iQgAlD43klqsPgoRfG4dSz/fP1hriEHmw7b4shCs+GjnQRP2FY9vsYo/dBUpKDRu+Tex89B8oMDjC3PWQOY3UmvXml5j/TrrpwLtHRg=
 ```
 To decrypt data using Python:
 ```
 make python-decrypt
+python3 ./python/decrypt/main.py
+Enter the ciphertext (base64): aYZRG0BAZxWI2oWXHr7bw5bK650w+6HI+hVBtpNbjF+1Zje8mG/dQSaylBVAxtZs/vx7iQgAlD43klqsPgoRfG4dSz/fP1hriEHmw7b4shCs+GjnQRP2FY9vsYo/dBUpKDRu+Tex89B8oMDjC3PWQOY3UmvXml5j/TrrpwLtHRg=
+Decrypted: test python
 ```
 
 ### Notes
