@@ -6,7 +6,7 @@ import (
 	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
-	"encoding/hex"
+	"encoding/base64"
 	"encoding/pem"
 	"fmt"
 	"os"
@@ -48,17 +48,17 @@ func readPrivateKeyFromFile(filename string) (*rsa.PrivateKey, error) {
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter the ciphertext (hex): ")
-	ciphertextHex, _ := reader.ReadString('\n')
-	ciphertextHex = strings.TrimSpace(ciphertextHex) // Trim any whitespace or newline characters
+	fmt.Print("Enter the chipperText (base64): ")
+	chipperTextBase64, _ := reader.ReadString('\n')
+	chipperTextBase64 = strings.TrimSpace(chipperTextBase64) // Trim any whitespace or newline characters
 
-	ciphertext, err := hex.DecodeString(ciphertextHex)
+	chipperText, err := base64.StdEncoding.DecodeString(chipperTextBase64)
 	if err != nil {
-		fmt.Println("Error decoding ciphertext:", err)
+		fmt.Println("Error decoding chipperText:", err)
 		return
 	}
 
-	privateKey, err := readPrivateKeyFromFile("../cert/private_key.pem")
+	privateKey, err := readPrivateKeyFromFile("./cert/private_key.pem")
 	if err != nil {
 		fmt.Println("Error reading private key:", err)
 		return
@@ -67,10 +67,10 @@ func main() {
 	label := []byte("test")
 	hash := sha256.New()
 
-	// Decrypt the ciphertext using the private key and OAEP padding
-	plaintext, err := rsa.DecryptOAEP(hash, rand.Reader, privateKey, ciphertext, label)
+	// Decrypt the chipperText using the private key and OAEP padding
+	plaintext, err := rsa.DecryptOAEP(hash, rand.Reader, privateKey, chipperText, label)
 	if err != nil {
-		fmt.Println("Error decrypting ciphertext:", err)
+		fmt.Println("Error decrypting chipperText:", err)
 		return
 	}
 

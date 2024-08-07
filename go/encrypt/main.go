@@ -6,6 +6,7 @@ import (
 	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
+	"encoding/base64"
 	"encoding/pem"
 	"fmt"
 	"os"
@@ -38,7 +39,7 @@ func main() {
 	fmt.Print("Enter the message to encrypt: ")
 	inputString, _ := reader.ReadString('\n')
 
-	publicKey, err := readPublicKeyFromFile("../cert/public_key.pem")
+	publicKey, err := readPublicKeyFromFile("./cert/public_key.pem")
 	if err != nil {
 		fmt.Println("Error reading public key:", err)
 		return
@@ -49,11 +50,12 @@ func main() {
 	hash := sha256.New()
 
 	// Encrypt the message using the public key and OAEP padding
-	ciphertext, err := rsa.EncryptOAEP(hash, rand.Reader, publicKey, message, label)
+	chipperText, err := rsa.EncryptOAEP(hash, rand.Reader, publicKey, message, label)
 	if err != nil {
 		fmt.Println("Error encrypting message:", err)
 		return
 	}
 
-	fmt.Printf("Ciphertext (hex): %x\n", ciphertext)
+	chipperTextBase64 := base64.StdEncoding.EncodeToString(chipperText)
+	fmt.Printf("chipperText (base64): %s\n", chipperTextBase64)
 }
